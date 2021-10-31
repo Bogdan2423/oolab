@@ -16,8 +16,9 @@ public enum MapDirection {
                 return "Zachód";
             case EAST:
                 return "Wschód";
+            default:
+                return "asdf";
         }
-        return "asdf";
     }
 
     public MapDirection next(){

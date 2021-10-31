@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Vector2dTest {
     @Test
     public void equalsTest(){
-        assertTrue(new Vector2d(1,2).equals(new Vector2d(1,2)));
-        assertFalse(new Vector2d(1,2).equals(new Vector2d(2,1)));
+        assertEquals(new Vector2d(1, 2), new Vector2d(1, 2));
+        assertEquals(new Vector2d(1,2), new Vector2d(2,1));
         assertFalse(new Vector2d(1,2).equals(2));
     }
     @Test
