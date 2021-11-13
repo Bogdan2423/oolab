@@ -1,14 +1,26 @@
 package agh.ics.oop;
 
 class Animal {
-    private Vector2d position = new Vector2d(2, 2);
+    private Vector2d position;
+    private IWorldMap map;
     private MapDirection orientation = MapDirection.NORTH;
-    private Vector2d upBoundary = new Vector2d(4, 4);
-    private Vector2d lowBoundary = new Vector2d(0, 0);
+
+
+    Animal(IWorldMap map, Vector2d initialPosition){
+        this.map=map;
+        this.position=initialPosition;
+    }
 
     public String toString() {
-        return position.toString() + ", " + orientation.toString() + "\n";
+        return switch (this.orientation){
+            case EAST -> ">";
+            case WEST -> "<";
+            case NORTH -> "^";
+            case SOUTH -> "v";
+        };
     }
+
+    public Vector2d getPosition() { return this.position;}
 
     public boolean isAt(Vector2d position1) {
         return this.position.equals(position1);
@@ -24,14 +36,12 @@ class Animal {
                 break;
             case FORWARD:
                 Vector2d moveVector = this.position.add(this.orientation.toUnitVector());
-                if (moveVector.follows(lowBoundary) &&
-                        moveVector.precedes(upBoundary))
+                if (map.canMoveTo(moveVector))
                     this.position = moveVector;
                 break;
             case BACKWARD:
                 Vector2d backVector = this.position.add(this.orientation.toUnitVector().opposite());
-                if (backVector.follows(lowBoundary) &&
-                        backVector.precedes(upBoundary))
+                if (map.canMoveTo(backVector))
                     this.position = backVector;
                 break;
         }

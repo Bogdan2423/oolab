@@ -1,42 +1,26 @@
 package agh.ics.oop;
 
+import java.util.ArrayList;
+
 class OptionsParser {
-    public static MoveDirection[] parse(String[] moveArray) {
-         int inLen= moveArray.length;
-         int outLen= moveArray.length;
+    public ArrayList<MoveDirection> parse(String[] moveArray) {
 
-         for(String move:moveArray){
-            if (!move.equals("f")&&!move.equals("b")&&!move.equals("r")&&!move.equals("l"))
-                outLen--;
-        }
-
-        MoveDirection[] result=new MoveDirection[outLen];
-        int i=0;
-        int j=0;
-        while(i<moveArray.length) {
-            switch (moveArray[i]) {
+        ArrayList<MoveDirection> result=new ArrayList<MoveDirection>();
+        for(String direction:moveArray) {
+            switch (direction) {
                 case "f":
-                    result[j]=MoveDirection.FORWARD;
-                    i++;
-                    j++;
+                    result.add(MoveDirection.FORWARD);
                     break;
                 case "b":
-                    result[j]=MoveDirection.BACKWARD;
-                    i++;
-                    j++;
-                    break;
-                case "r":
-                    result[j]=MoveDirection.RIGHT;
-                    i++;
-                    j++;
+                    result.add(MoveDirection.BACKWARD);
                     break;
                 case "l":
-                    result[j]=MoveDirection.LEFT;
-                    i++;
-                    j++;
+                    result.add(MoveDirection.LEFT);
+                    break;
+                case "r":
+                    result.add(MoveDirection.RIGHT);
                     break;
                 default:
-                    i++;
                     break;
             }
         }
