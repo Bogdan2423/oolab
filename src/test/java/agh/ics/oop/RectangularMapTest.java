@@ -26,4 +26,11 @@ public class RectangularMapTest {
         assertFalse(testMap.isOccupied(new Vector2d(2,3)));
         assertFalse(testMap.canMoveTo(new Vector2d(2,2)));
     }
+    @Test
+    public void objectAtTest(){
+        RectangularMap testMap= new RectangularMap(4,4);
+        Animal testAnimal1= new Animal(testMap,new Vector2d(2,2));
+        testMap.place(testAnimal1);
+        assertEquals(testMap.objectAt(new Vector2d(2,2)),testAnimal1);
+    }
 }

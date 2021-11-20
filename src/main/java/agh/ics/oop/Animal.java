@@ -1,7 +1,6 @@
 package agh.ics.oop;
 
-class Animal {
-    private Vector2d position;
+class Animal extends AbstractWorldMapElement{
     private IWorldMap map;
     private MapDirection orientation = MapDirection.NORTH;
 
@@ -20,13 +19,8 @@ class Animal {
         };
     }
 
-    public Vector2d getPosition() { return this.position;}
-
-    public boolean isAt(Vector2d position1) {
-        return this.position.equals(position1);
-    }
-
     public void move(MoveDirection direction) {
+        Vector2d newPosition = this.position;
         switch (direction) {
             case RIGHT:
                 this.orientation = this.orientation.next();
@@ -35,15 +29,17 @@ class Animal {
                 this.orientation = this.orientation.previous();
                 break;
             case FORWARD:
-                Vector2d moveVector = this.position.add(this.orientation.toUnitVector());
-                if (map.canMoveTo(moveVector))
-                    this.position = moveVector;
+                newPosition = this.position.add(this.orientation.toUnitVector());
                 break;
             case BACKWARD:
-                Vector2d backVector = this.position.add(this.orientation.toUnitVector().opposite());
-                if (map.canMoveTo(backVector))
-                    this.position = backVector;
+                newPosition = this.position.add(this.orientation.toUnitVector().opposite());
                 break;
         }
+        if (map.objectAt(newPosition) instanceof Grass){
+            map.eatGrassAt(newPosition);
+        }
+
+        if (map.canMoveTo(newPosition))
+            this.position = newPosition;
     }
 }

@@ -45,6 +45,20 @@ public class SimulationEngineTest {
     }
 
     @Test
+    public void grassMultiRunTest(){
+        GrassField testMap=new GrassField(10);
+        String[] stringDirections={"f","f","r","l","f","f"};
+        ArrayList<MoveDirection> directions=new OptionsParser().parse(stringDirections);
+        Vector2d[] animalPositions={new Vector2d(2,2),new Vector2d(3,3)};
+        SimulationEngine testEngine=new SimulationEngine(directions,testMap,animalPositions);
+
+        testEngine.run();
+
+        assertTrue(testEngine.animalIsAt(0,new Vector2d(3,3)));
+        assertTrue(testEngine.animalIsAt(1,new Vector2d(2,4)));
+    }
+
+    @Test
     public void collisionRunTest(){
         RectangularMap testMap=new RectangularMap(4,4);
         String[] stringDirections={"f","b"};

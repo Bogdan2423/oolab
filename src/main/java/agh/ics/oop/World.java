@@ -7,10 +7,12 @@ public class World {
 
     public static void main(String[] args) {
         ArrayList<MoveDirection> directions =new OptionsParser().parse(args);
-        IWorldMap map=new RectangularMap(10,5);
-        Vector2d[] positions={new Vector2d(2,2),new Vector2d(3,4)};
-        IEngine engine=new SimulationEngine(directions,map,positions);
-        engine.run();
+        IWorldMap map=new GrassField(3);
+        Animal animal=new Animal(map,new Vector2d(3,2));
+        map.place(animal);
+        ((GrassField) map).placeTestGrass(new Vector2d(3,3));
+        out.print(map);
+        animal.move(MoveDirection.FORWARD);
         out.print(map);
     }
 }

@@ -8,6 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AnimalTest {
     @Test
+    public void forwardTest() {
+        RectangularMap map = new RectangularMap(4,4);
+        Animal testAnimal = new Animal(map, new Vector2d(2, 2));
+        String[] testMove1 = {"f"};
+        ArrayList<MoveDirection> testDirection1 =new OptionsParser().parse(testMove1);
+        for (MoveDirection arg : testDirection1) {
+            testAnimal.move(arg);
+        }
+
+        assertEquals(testAnimal.toString(), "^");
+        assertTrue(testAnimal.isAt(new Vector2d(2, 3)));
+    }
+    @Test
     public void boundaryTest() {
         RectangularMap map = new RectangularMap(4,4);
         Animal testAnimal = new Animal(map, new Vector2d(2, 2));
