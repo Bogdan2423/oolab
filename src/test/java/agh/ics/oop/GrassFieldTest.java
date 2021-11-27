@@ -49,6 +49,12 @@ public class GrassFieldTest {
         testMap.placeTestGrass(new Vector2d(2,3));
         assertTrue(testMap.objectAt(new Vector2d(2,3)) instanceof Grass);
         testAnimal1.move(MoveDirection.FORWARD);
-        assertTrue(testMap.objectAt(new Vector2d(2,3)) instanceof Animal);
+        assertEquals(testMap.objectAt(new Vector2d(2,3)),testAnimal1);
+        Vector2d position2=new Vector2d(5,5);
+        testMap.placeTestGrass(position2);
+        assertTrue(testMap.objectAt(position2) instanceof Grass);
+        Animal testAnimal2=new Animal(testMap,position2);
+        testMap.place(testAnimal2);
+        assertEquals(testMap.objectAt(position2),testAnimal2);
     }
 }

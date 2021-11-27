@@ -1,6 +1,8 @@
 package agh.ics.oop;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.Vector;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangularMapTest {
@@ -14,7 +16,8 @@ public class RectangularMapTest {
     @Test
     public void placeTest(){
         RectangularMap testMap= new RectangularMap(4,4);
-        Animal testAnimal1= new Animal(testMap,new Vector2d(2,2));
+        Vector2d position=new Vector2d(2,2);
+        Animal testAnimal1= new Animal(testMap,position);
         assertTrue(testMap.place(testAnimal1));
     }
     @Test
