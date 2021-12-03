@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GrassFieldTest {
     @Test
     public void canMoveToTest(){
-        GrassField testMap= new GrassField(10);
+        GrassField testMap= new GrassField(0);
         testMap.placeTestGrass(new Vector2d(2,2));
         testMap.place(new Animal(testMap,new Vector2d(4,5)));
         assertTrue(testMap.canMoveTo(new Vector2d(2,2)));
@@ -18,12 +18,12 @@ public class GrassFieldTest {
     public void placeTest(){
         GrassField testMap= new GrassField(10);
         Animal testAnimal1= new Animal(testMap,new Vector2d(2,2));
-        assertTrue(testMap.place(testAnimal1));
+        testMap.place(testAnimal1);
         assertEquals(testMap.objectAt(new Vector2d(2,2)),testAnimal1);
     }
     @Test
     public void isOccupiedTest(){
-        GrassField testMap= new GrassField(10);
+        GrassField testMap= new GrassField(0);
         Animal testAnimal1= new Animal(testMap,new Vector2d(2,2));
         testMap.place(testAnimal1);
         testMap.placeTestGrass(new Vector2d(2,3));
@@ -34,7 +34,7 @@ public class GrassFieldTest {
     }
     @Test
     public void objectAtTest(){
-        GrassField testMap= new GrassField(10);
+        GrassField testMap= new GrassField(0);
         Animal testAnimal1= new Animal(testMap,new Vector2d(2,2));
         testMap.place(testAnimal1);
         assertEquals(testMap.objectAt(new Vector2d(2,2)),testAnimal1);

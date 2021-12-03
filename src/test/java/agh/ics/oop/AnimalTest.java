@@ -24,7 +24,7 @@ public class AnimalTest {
     public void boundaryTest() {
         RectangularMap map = new RectangularMap(4,4);
         Animal testAnimal = new Animal(map, new Vector2d(2, 2));
-        String[] testMove1 = {"f", "f", "x", "f", "f"};
+        String[] testMove1 = {"f", "f", "f", "f"};
         ArrayList<MoveDirection> testDirection1 =new OptionsParser().parse(testMove1);
         for (MoveDirection arg : testDirection1) {
             testAnimal.move(arg);
@@ -38,7 +38,7 @@ public class AnimalTest {
     public void rightTurnTest(){
         RectangularMap map = new RectangularMap(4,4);
         Animal testAnimal = new Animal(map, new Vector2d(2, 2));
-        String[] testMove2 = {"r", "f", "j", "f", "f", "f"};
+        String[] testMove2 = {"r", "f", "f", "f", "f"};
         ArrayList<MoveDirection> testDirection2 =new OptionsParser().parse(testMove2);
         for (MoveDirection arg : testDirection2) {
             testAnimal.move(arg);

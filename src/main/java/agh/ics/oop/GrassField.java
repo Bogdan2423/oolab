@@ -4,6 +4,7 @@ import java.util.Random;
 public class GrassField extends AbstractWorldMap{
     private int n;
     Random rand=new Random();
+    private MapBoundary boundary=new MapBoundary();
 
     GrassField(int n){
         this.n=n;
@@ -15,45 +16,51 @@ public class GrassField extends AbstractWorldMap{
         }
     }
 
+    public void place(Animal animal) {
+        boundary.add(animal.getPosition());
+        super.place(animal);
+    }
+
     private void placeNewGrass(Vector2d except){
         int randBound=(int) Math.round(Math.sqrt(n*10));
         int newX= rand.nextInt(randBound);
         int newY= rand.nextInt(randBound);
         Vector2d grassPosition=new Vector2d(newX,newY);
+        Grass newGrass;
         while (isOccupied(grassPosition) || grassPosition.equals(except)) {
             newX = rand.nextInt(randBound);
             newY = rand.nextInt(randBound);
             grassPosition=new Vector2d(newX,newY);
         }
         grassPosition=new Vector2d(newX,newY);
-        mapElements.put(grassPosition,new Grass(grassPosition));
+        newGrass=new Grass(grassPosition);
+        mapElements.put(grassPosition,newGrass);
+        boundary.add(grassPosition);
     }
 
     public void placeTestGrass(Vector2d position){
         n++;
-        mapElements.put(position,new Grass(position));
+        if (!isOccupied(position)) {
+            mapElements.put(position, new Grass(position));
+            boundary.add(position);
+        }
+        else
+            throw new IllegalArgumentException("Cannot place grass at "+position);
     }
 
     public void eatGrassAt(Vector2d position){
         mapElements.remove(position);
+        boundary.remove(position);
         placeNewGrass(position);
         return;
     }
 
-    protected void setBoundaryVectors(){
-        lowBoundary=null;
-        upBoundary=null;
-        for (IMapElement element:mapElements.values()){
-            if (lowBoundary == null || upBoundary==null){
-                lowBoundary=element.getPosition();
-                upBoundary= element.getPosition();
-            }
-            lowBoundary=lowBoundary.lowerLeft(element.getPosition());
-            upBoundary=upBoundary.upperRight(element.getPosition());
-        }
-        if (lowBoundary == null || upBoundary==null){
-            lowBoundary=new Vector2d(0,0);
-            upBoundary=new Vector2d(0,0);
-        }
+    public String toString(){
+        return visualizer.draw(boundary.getLowBoundary(),boundary.getUpBoundary());
+    }
+
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
+        boundary.positionChanged(oldPosition,newPosition);
+        super.positionChanged(oldPosition, newPosition);
     }
 }

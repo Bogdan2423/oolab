@@ -1,6 +1,5 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,7 +13,7 @@ abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
         return !(objectAt(position) instanceof Animal);
     }
 
-    public boolean place(Animal animal) {
+    public void place(Animal animal) {
         Vector2d animalPosition=animal.getPosition();
         if (canMoveTo(animalPosition))
         {
@@ -22,9 +21,9 @@ abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
                 eatGrassAt(animalPosition);
             mapElements.put(animalPosition,animal);
             animal.addObserver(this);
-            return true;
         }
-        return false;
+        else {throw new IllegalArgumentException("Cannot place animal at "+animalPosition);}
+        return;
     }
 
     public boolean isOccupied(Vector2d position) {
@@ -33,13 +32,6 @@ abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
 
     public Object objectAt(Vector2d position) {
         return mapElements.get(position);
-    }
-
-    protected void setBoundaryVectors(){};
-
-    public String toString(){
-        setBoundaryVectors();
-        return visualizer.draw(lowBoundary,upBoundary);
     }
 
     public void eatGrassAt(Vector2d position){}

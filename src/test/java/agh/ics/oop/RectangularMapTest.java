@@ -13,13 +13,7 @@ public class RectangularMapTest {
         assertFalse(testMap.canMoveTo(new Vector2d(4,5)));
         assertFalse(testMap.canMoveTo(new Vector2d(-1,0)));
     }
-    @Test
-    public void placeTest(){
-        RectangularMap testMap= new RectangularMap(4,4);
-        Vector2d position=new Vector2d(2,2);
-        Animal testAnimal1= new Animal(testMap,position);
-        assertTrue(testMap.place(testAnimal1));
-    }
+
     @Test
     public void isOccupiedTest(){
         RectangularMap testMap= new RectangularMap(4,4);
