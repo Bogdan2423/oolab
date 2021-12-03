@@ -40,4 +40,7 @@ abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
         IMapElement currAnimal=mapElements.remove(oldPosition);
         mapElements.put(newPosition,currAnimal);
     }
+
+    public Vector2d getLowBoundary(){return lowBoundary;}
+    public Vector2d getUpBoundary(){return upBoundary;}
 }

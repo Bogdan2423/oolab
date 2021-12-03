@@ -6,7 +6,7 @@ public class GrassField extends AbstractWorldMap{
     Random rand=new Random();
     private MapBoundary boundary=new MapBoundary();
 
-    GrassField(int n){
+    public GrassField(int n){
         this.n=n;
 
         int i=0;
@@ -55,8 +55,20 @@ public class GrassField extends AbstractWorldMap{
         return;
     }
 
+    public Vector2d getLowBoundary() {
+        lowBoundary=boundary.getLowBoundary();
+        return lowBoundary;
+    }
+
+    public Vector2d getUpBoundary(){
+        upBoundary=boundary.getUpBoundary();
+        return upBoundary;
+    }
+
     public String toString(){
-        return visualizer.draw(boundary.getLowBoundary(),boundary.getUpBoundary());
+        upBoundary=boundary.getUpBoundary();
+        lowBoundary=boundary.getLowBoundary();
+        return visualizer.draw(lowBoundary,upBoundary);
     }
 
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {

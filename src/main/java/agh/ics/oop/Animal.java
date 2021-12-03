@@ -2,13 +2,13 @@ package agh.ics.oop;
 
 import java.util.ArrayList;
 
-class Animal extends AbstractWorldMapElement{
+public class Animal extends AbstractWorldMapElement{
     private IWorldMap map;
     private MapDirection orientation = MapDirection.NORTH;
     private ArrayList<IPositionChangeObserver> observers=new ArrayList<>();
 
 
-    Animal(IWorldMap map, Vector2d initialPosition){
+    public Animal(IWorldMap map, Vector2d initialPosition){
         this.map=map;
         this.position=initialPosition;
     }

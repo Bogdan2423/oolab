@@ -1,8 +1,9 @@
 package agh.ics.oop;
 
 import java.util.ArrayList;
+import java.util.List;
 
-class OptionsParser {
+public class OptionsParser {
     public ArrayList<MoveDirection> parse(String[] moveArray) {
 
         ArrayList<MoveDirection> result=new ArrayList<MoveDirection>();
