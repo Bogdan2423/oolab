@@ -12,6 +12,16 @@ public class World {
 
     public static void main(String[] args) {
 
-        Application.launch(App.class,args);
+        GrassField map=new GrassField(10);
+        out.print(map);
+        Animal animal=new Animal(map,new Vector2d(15,15));
+        map.place(animal);
+        out.print(map);
+        animal.move(MoveDirection.BACKWARD);
+        animal.move(MoveDirection.BACKWARD);
+        animal.move(MoveDirection.BACKWARD);
+        out.print(map);
+
+        //Application.launch(App.class,args);
     }
 }

@@ -18,6 +18,7 @@ public class GrassField extends AbstractWorldMap{
 
     public void place(Animal animal) {
         boundary.add(animal.getPosition());
+        animal.addObserver(boundary);
         super.place(animal);
     }
 
@@ -71,8 +72,4 @@ public class GrassField extends AbstractWorldMap{
         return visualizer.draw(lowBoundary,upBoundary);
     }
 
-    public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
-        boundary.positionChanged(oldPosition,newPosition);
-        super.positionChanged(oldPosition, newPosition);
-    }
 }
