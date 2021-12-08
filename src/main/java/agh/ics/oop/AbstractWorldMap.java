@@ -13,7 +13,7 @@ abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
         return !(objectAt(position) instanceof Animal);
     }
 
-    public void place(Animal animal) {
+    public void place(Animal animal){
         Vector2d animalPosition=animal.getPosition();
         if (canMoveTo(animalPosition))
         {

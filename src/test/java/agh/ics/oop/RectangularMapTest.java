@@ -6,6 +6,15 @@ import java.util.Vector;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RectangularMapTest {
+
+    @Test
+    public void placeTest(){
+        RectangularMap testMap= new RectangularMap(4,4);
+        Animal testAnimal1= new Animal(testMap,new Vector2d(2,2));
+        testMap.place(testAnimal1);
+        assertThrows(IllegalArgumentException.class,()->{testMap.place(testAnimal1);});
+    }
+
     @Test
     public void canMoveToTest(){
         RectangularMap testMap= new RectangularMap(4,4);
