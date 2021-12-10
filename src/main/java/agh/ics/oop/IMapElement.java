@@ -4,4 +4,6 @@ public interface IMapElement {
 
     public boolean isAt(Vector2d position);
     public Vector2d getPosition();
+    public String getImagePath();
+    public String getLabel();
 }

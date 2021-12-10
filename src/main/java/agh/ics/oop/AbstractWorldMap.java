@@ -3,7 +3,7 @@ package agh.ics.oop;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
+public abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
     protected Map<Vector2d, IMapElement> mapElements=new LinkedHashMap<>();
     protected MapVisualizer visualizer=new MapVisualizer(this);
     protected Vector2d lowBoundary;

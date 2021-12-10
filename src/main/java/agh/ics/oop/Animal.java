@@ -22,6 +22,15 @@ public class Animal extends AbstractWorldMapElement{
         };
     }
 
+    public String getImagePath(){
+        return switch (this.orientation){
+            case EAST -> "src/main/resources/animal2.png";
+            case WEST -> "src/main/resources/animal4.png";
+            case NORTH -> "src/main/resources/animal1.png";
+            case SOUTH -> "src/main/resources/animal3.png";
+        };
+    }
+
     public void move(MoveDirection direction) {
         Vector2d oldPosition = this.position;
         Vector2d newPosition = this.position;

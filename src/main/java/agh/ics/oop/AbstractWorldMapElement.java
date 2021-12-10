@@ -1,6 +1,6 @@
 package agh.ics.oop;
 
-public class AbstractWorldMapElement implements IMapElement{
+public abstract class AbstractWorldMapElement implements IMapElement{
     protected Vector2d position;
 
     public boolean isAt(Vector2d position) {
@@ -10,4 +10,6 @@ public class AbstractWorldMapElement implements IMapElement{
     public Vector2d getPosition(){
         return this.position;
     }
+
+    public String getLabel(){return this.position.toString();}
 }
